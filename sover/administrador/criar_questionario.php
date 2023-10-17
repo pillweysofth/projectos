@@ -1,0 +1,316 @@
+<?php
+session_start();
+
+if( !isset($_SESSION['estado'])||($_SESSION['estado']!=0)){
+header("Location: ../bd/terminar_sessao.php");
+}
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Criar questionario</title>
+    <meta name="charset" content="utf-8">
+    <meta name="generator" content="SOVE 1.0.1">
+    <meta name="author" content="Amarante, PillSofth">
+    <link rel="icon" type="image/jpeg" sizes="720x675" href="../assets/img/logo.jpg">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="../assets/css/Stats.css">
+
+<link rel="stylesheet" href="../assets/css/themes/light-theme.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+            <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+                <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="administrador.php">
+                    <div class="sidebar-brand-icon rotate-n-15"><img class="rounded-circle" src="../assets/img/logo.jpg" width="50" height="50"></div>
+                    <div class="sidebar-brand-text mx-3"><span>SOVE</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="administrador.php"></a></li>
+                    <hr class="sidebar-divider">
+                    <div class="sidebar-heading"></div>
+                    <li class="nav-item">
+                        <div><a class="btn btn-link nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1" role="button" style="font-weight: bold;"><i class="fas fa-newspaper"></i>&nbsp;Eleiçoes</a>
+                            <div class="collapse" id="collapse-1">
+                                <div class="bg-white border rounded py-2 collapse-inner"><a class="collapse-item"
+                                 href="consultar_eleicoes.php"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-presentation">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <line x1="3" y1="4" x2="21" y2="4"></line>
+                                    <path d="M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-10"></path>
+                                    <line x1="12" y1="16" x2="12" y2="20"></line>
+                                    <line x1="9" y1="20" x2="15" y2="20"></line>
+                                    <path d="M8 12l3 -3l2 2l3 -3"></path>
+                                </svg>&nbsp;Estado de eleiçao</a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div><a class="btn btn-link nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-2" href="#collapse-2" role="button" style="font-weight: bold;"><i class="fa fa-wpforms" style="width: 13px;height: 13px;"></i>&nbsp;Questionario</a>
+                            <div class="collapse" id="collapse-2">
+                                <div class="bg-white border rounded py-2 collapse-inner"><a class="collapse-item" 
+                                    href="criar_questionario.php"><i class="fa fa-plus-circle"></i>&nbsp; Criar Questionario</a><a class="collapse-item" href="lista_questionario.php"><i class="fa fa-check-square-o"></i>&nbsp; Ver Questionadio</a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="sidebar-divider">
+                    <div class="sidebar-heading"></div>
+                    <li class="nav-item">
+                        <div><a class="btn btn-link nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-3" href="#collapse-3" role="button"><i class="far fa-user"></i>&nbsp;<span style="font-weight: bold;">Usuario</span></a>
+                            <div class="collapse" id="collapse-3">
+                                <div class="bg-white border rounded shadow flex-fill py-2 collapse-inner"><a class="collapse-item" href="lista_usuario.php"><i class="fas fa-user-tie"></i>&nbsp; Usuario Cadastrados</a><a class="collapse-item" href="#"><i class="fas fa-user-edit"></i>&nbsp;def</a></div>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="charts.html"><i class="fas fa-info-circle"></i><span>Sobre</span></a></li>
+                    <li class="nav-item"></li>
+                     <hr class="sidebar-divider">
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" style="background: url(&quot;../assets/img/5.jpg&quot;) center / cover;">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
+
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown no-arrow mx-1">
+
+
+                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
+                            </li>
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">
+                                    <?php
+                                    echo $_SESSION['user'];
+                                    ?>
+                                </span><img class="border rounded-circle img-profile" src="../util/buscar_foto.php?id=<?php echo $_SESSION['foto']; ?>"></a>
+                                <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="perfil.php"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Perfil</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Definiçoes</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Actividade</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item"
+                                     href="../bd/terminar_sessao.php"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Sair</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+                <div class="container-fluid">
+                    <div class="col">
+                        <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                                            
+                                       
+                <h2 class="text-primary m-0 fw-bold" style="color: var(--bs-purple);text-align: center;"><strong>Criar questionario</strong></h2> </div>
+                
+
+                    <div class="row d-flex justify-content-center align-items-center align-content-center m-auto">
+                        <div class="container">
+                            <div class="row">
+                        <div class="col">
+                           <div class="card shadow">
+                                  <br>
+                                  <form method="post" action="bd/criar_questionario.php" class="needs-validation was-validated" id="reg_quest" novalidate>
+                                <div class="row justify-content-center m-auto">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                        <input class="form-control form-control-sm" type="text" name="titulo" placeholder="Digite o nome questionario" required>
+
+                                        <label  for="floatingInput"><strong>Nome questionario</strong></label>
+</div>
+                                        </div>
+                                        <div class="col">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="sobre" required></textarea>
+                                        <label  for="floatingInput"><strong>Sobre o questionario</strong></label>
+                                        </div></div>
+                                        <div class="row">
+                                            <input class="form-control form-control-sm invisible" type="text" name="criador" placeholder="Digite o nome questionario" value=<?=$_SESSION['id']?> >
+                                    <div class="col"><label class="form-label text-dark"><strong>Arranca</strong></label>
+                                        <input class="form-control form-control-sm" type="date" name="data_inicio" required>
+                                        </div>
+                                        <div class="col">
+                                        <label class="form-label text-dark"><strong>Termina</strong></label>
+                                        <input class="form-control form-control-sm" type="date" name="data_final" required></div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary" name="salvar_quest">Criar questionario</button>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col">
+                            <form method="post" id="cad_perg" class="needs-validation was-validated" novalidate>
+                                                            <hr>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                       <select class="form-select" name="quest_nome" required>
+                                        <option value="">Seleciona o questionario</option>
+                                        <?php 
+                                        require '../bd/conexao.php';
+                                        $sql="SELECT * FROM questionario";
+                                        $resultado=mysqli_query($conn,$sql);
+                                        while($quest=mysqli_fetch_assoc($resultado)){
+                                            if($quest['fk_cria']==$_SESSION['id']){
+                                            echo "<option value='{$quest['id_questionario']}'>{$quest['nome_quest']}</option>";
+                                                }
+                                        }
+                                        ?>
+                                       </select>
+                                        </div>
+
+                                 </div>
+                                <hr>
+
+                                     <div class="row">
+                                        <div class="col">
+                                       <div class="form-floating">
+                                        <input class="form-control form-control-sm" id="pergunta" type="text" name="pergunta" placeholder="Digite o nome questionario" required>
+                                        <label  for="floatingInput"><strong>Pergunta</strong></label>
+                                        <div class="invalid-feedback"> digite a pergunta</div>
+                                        </div>
+                                        <br>
+                                         <button class="btn btn-primary border rounded" name="registar_perg"
+                                          id="ad_resp" type="submit">Registar pergunta</button>
+                                   </div>
+                                    <div class="col">
+                                         <div class="card-header">
+                                        <div id="questionario"> </div>
+                                     </div>
+                                       
+                                        <label  for="form-control"><strong>Respostas</strong></label>
+                                        <div class="form-check">
+                                            <input type="radio" value="sim" class="form-check-input"  name="tipo_pergunta" required>
+                                            <label>SIM NAO TALVEZ</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" value="percentagem"  class="form-check-input" name="tipo_pergunta" required>
+                                            <label>POR PERCENTAGEM</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" value="zero_dez"  class="form-check-input" name="tipo_pergunta" required>
+                                            <label>ESCALA DE 0 A 10</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" value="zero_cem"  class="form-check-input" name="tipo_pergunta" required>
+                                            <label>ESCALA DE 0 A 100</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" value="semanal" class="form-check-input" name="tipo_pergunta" required>
+                                            <label>ESCALA SEMANAL</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" value="mensal" class="form-check-input" name="tipo_pergunta" required>
+                                            <label>ESCALA MENSAL</label>
+                                        </div>
+                                        </div>
+                                  
+                                    </div>
+                                    </form>
+                                    <br>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    
+                
+                </div> </div> </div> 
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2022</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/xsalert.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/form-validation.js"></script>
+  
+      <script type="text/javascript">
+        $(function(){
+    
+        $('#reg_quest').on('submit',function(e){
+            e.preventDefault();
+            var dados=$("#reg_quest").serialize();
+
+            $.post("../bd/criar_questionario.php",dados,function(retorno){
+                if(retorno==1){
+                    XSAlert({
+                        title: "Questionario!",
+                message: "Cadastrado com sucesso",
+                autoCloseTimer: 1000,
+                hideProgressBar: false, 
+                hideProgressIcon: true, 
+                hideOkButton: true,
+                ideCancelButton: true
+   
+         }).then((result) => {
+           if(result == 'autoClosed') {
+           $(location).attr('href','criar_questionario.php');
+               }
+            });
+                }else{
+
+               XSAlert({
+
+   title: "Erro!",
+   message:retorno,
+     hideCancelButton: true
+});
+   
+                }
+            })
+            
+
+        });
+         $('#cad_perg').on('submit',function(e){
+            e.preventDefault();
+            var dados=$("#cad_perg").serialize();
+
+            $.post("../bd/criar_questionario.php",dados,function(retorno){
+                if(retorno==1){
+                    XSAlert({
+                        title: "Pergunta e Resposta",
+                message: "Cadastrados com sucesso",
+                autoCloseTimer: 1000,
+                hideProgressBar: false, 
+                hideProgressIcon: true, 
+                hideOkButton: true,
+                ideCancelButton: true
+    
+         }).then((result) => {
+           if(result == 'autoClosed') {
+          document.getElementById("pergunta").value="";
+        
+               }
+            });
+                }
+            })
+            
+
+        });
+    })
+    </script>
+</body>
+
+</html>
