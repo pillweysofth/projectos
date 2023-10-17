@@ -1,0 +1,136 @@
+//desabilita o botão no início
+document.getElementById("botao").disabled = true;
+
+//cria um event listener que escuta mudanças no input
+document.getElementById("input").addEventListener("input", function(event){
+
+  //busca conteúdo do input
+    var conteudo = document.getElementById("input").value;
+
+    //valida conteudo do input 
+    if (conteudo !== null && conteudo !== '') {
+      //habilita o botão
+      document.getElementById("botao").disabled = false;
+    } else {
+      //desabilita o botão se o conteúdo do input ficar em branco
+      document.getElementById("botao").disabled = true;
+    }
+});
+
+
+
+
+
+              <div class="row gutters-sm">
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                      <small>Web Design</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Website Markup</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>One Page</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Mobile Template</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Backend API</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                      <small>Web Design</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Website Markup</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>One Page</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Mobile Template</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Backend API</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+<script type="text/javascript">
+$(function(){
+$("#form_envia").on('submit', function(e){
+e.preventDefault();
+var dados=$("#form_envia").serialize();
+
+$.post("bd/enviar_resposta.php",
+    dados,
+   
+
+        XSAlert({
+         title: 'VALIDAR QUESTIONARIO',
+         message: "Tens certeza das respostas submeetidas?",
+         okButtonText: 'Absoluta',
+         cancelButtonText: "Cancelar",
+         closeOnOutsideClick: true,
+
+       }).then((result)=>{
+        if(result=='-ok'){
+
+            $.post("bd/enviar_resposta.php",
+                dados,
+                function(retorno){
+                    if(retorno==1){
+         XSAlert({
+
+                        title: "Respostas!",
+                message: "Enviadas com sucesso",
+                autoCloseTimer: 2000,
+                hideProgressBar: false, 
+                hideProgressIcon: false, 
+                hideOkButton: true,
+                hideCancelButton: true
+   
+         });
+         $(location).attr('href','lista_questionario.php');
+     }else{
+        XSAlert({title: 'Erro!', message: retorno,okButtonText: 'OK',hidecancelButton: true,
+         closeOnOutsideClick: true, }); }
+            })
+     }
+         
+       
+    
+});
+
+)
+})
+})
+
+
+</script>
+
