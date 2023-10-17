@@ -1,8 +1,0 @@
-<?php
-require 'conexao.php';
-
-$sql="SELECT * FROM "
-
-
-
-?>
